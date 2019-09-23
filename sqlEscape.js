@@ -1,3 +1,5 @@
+var config = {};
+
 function sqlEscapeStr(str) {
 
 	let regex = /:[\s\S]*"[\s\S]*[^'][']{1}[^',]*"/;//matches json object that needs to have an apostraphe escaped
@@ -24,7 +26,7 @@ function sqlEscapeStr(str) {
 	
 	//recursively fix all occurences
 	//first check if there are more ' to escape
-	try { if (typeof new_str.match(regex)[0] != "undefined") { ss.config.sqlEscaped =false; } }  
+	try { if (typeof new_str.match(regex)[0] != "undefined") { window.config.sqlEscaped =false; } }  
 	catch (err) {console.log(err);console.log('sqlEscapeStr error, str and regex:');console.log([str,regex]); config.sqlEscaped = true;}
 	//if the string is not escaped, call function recursively with the new string
 	//return new_str;
