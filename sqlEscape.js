@@ -9,12 +9,12 @@ function sqlEscapeStr(str) {
 		if (typeof replacement == "undefined") {
 		
 			//set boolean for recursive function to end after all occurences are taken care of
-			styleAssembler.config.sqlEscaped = true;
+			config.sqlEscaped = true;
 			return str;
 		} 
 	} catch (err) { 
 		//set boolean for recursive function to end after all occurences are taken care of
-		styleAssembler.config.sqlEscaped = true;
+		config.sqlEscaped = true;
 		console.log(err); return str; 
 	}
 
@@ -25,9 +25,9 @@ function sqlEscapeStr(str) {
 	//recursively fix all occurences
 	//first check if there are more ' to escape
 	try { if (typeof new_str.match(regex)[0] != "undefined") { ss.config.sqlEscaped =false; } }  
-	catch (err) {console.log(err);console.log('sqlEscapeStr error, str and regex:');console.log([str,regex]); ss.config.sqlEscaped = true;}
+	catch (err) {console.log(err);console.log('sqlEscapeStr error, str and regex:');console.log([str,regex]); config.sqlEscaped = true;}
 	//if the string is not escaped, call function recursively with the new string
 	//return new_str;
-	if (styleAssembler.config.sqlEscaped != true) {return sqlEscapeStr(new_str);}
+	if (config.sqlEscaped != true) {return sqlEscapeStr(new_str);}
 	else {return new_str;}
 }
